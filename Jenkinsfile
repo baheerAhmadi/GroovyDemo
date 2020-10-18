@@ -1,5 +1,9 @@
 pipeline {
   agent any
+  parameters {
+    choice(name: 'VERSION', choices: ['1.1.0', '1.2.3', '1.2.1'], description:'default values')
+    booleanParam(name: 'executeTests', defaultValue: true, description: '')
+  }
   tools {
         maven 'Maven'
   }
@@ -33,7 +37,7 @@ pipeline {
           echo 'deploy stage'
           echo "The Jenkins URL is ${JENKINS_URL}"
           echo "The user name is  ${ACCESS_KEY_USR}"
-          bat "mvn --version"
+          bat 'mvn --version'
       }
     }
   }
