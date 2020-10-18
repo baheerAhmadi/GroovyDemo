@@ -1,6 +1,9 @@
 pipeline {
   agent any
   triggers { pollSCM('H/2 * * * *') }
+  environment {
+    ACCESS_KEY = credentials('git-pass')
+  }
   stages {
     stage('build') {
       when {
@@ -26,6 +29,8 @@ pipeline {
       steps {
           echo 'deploy stage'
           echo "The Jenkins URL is ${JENKINS_URL}"
+          echo "The user name is  ${ACCESS_KEY_USR}"
+
       }
     }
   }
