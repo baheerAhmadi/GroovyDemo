@@ -2,13 +2,10 @@ pipeline {
   agent any
   triggers { pollSCM('H/2 * * * *') }
   stages {
-
     stage('build') {
-
-      when { 
+      when {
         expression {
           BRANCH_NAME == 'Dev'
-
         }
       }
       steps {
@@ -16,8 +13,13 @@ pipeline {
       }
     }
     stage('test') {
+      when {
+        expression {
+          BRANCH_NAME == 'main'
+        }
+      }
       steps {
-          echo 'test stage with pollSCM'
+          echo 'test stage in main branch with pollSCM'
       }
     }
     stage('deploy') {
