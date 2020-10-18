@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  tools {
+        maven 'Maven'
+  }
   triggers { pollSCM('H/2 * * * *') }
   environment {
     ACCESS_KEY = credentials('git-pass')
@@ -30,7 +33,7 @@ pipeline {
           echo 'deploy stage'
           echo "The Jenkins URL is ${JENKINS_URL}"
           echo "The user name is  ${ACCESS_KEY_USR}"
-
+          bat "mvn --version"
       }
     }
   }
