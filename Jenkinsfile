@@ -14,6 +14,7 @@ pipeline {
     stage('deploy') {
       steps {
           echo 'deploy stage'
+          echo "The Jenkins URL is ${params.JENKINS_URL}"
       }
     }
   }
