@@ -2,9 +2,17 @@ pipeline {
   agent any
   triggers { pollSCM('H/2 * * * *') }
   stages {
+
     stage('build') {
+
+      when { 
+        expression {
+          BRANCH_NAME == 'Dev'
+
+        }
+      }
       steps {
-        echo 'build stage'
+        echo 'we are in Dev build stage'
       }
     }
     stage('test') {
