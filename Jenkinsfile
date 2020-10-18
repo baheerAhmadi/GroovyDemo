@@ -3,6 +3,10 @@ pipeline {
   parameters {
     choice(name: 'VERSION', choices: ['1.1.0', '1.2.3', '1.2.1'], description:'default values')
     booleanParam(name: 'executeTests', defaultValue: true, description: '')
+    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+    password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
+
+    text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
   }
   tools {
         maven 'Maven'
@@ -38,6 +42,11 @@ pipeline {
           echo "The Jenkins URL is ${JENKINS_URL}"
           echo "The user name is  ${ACCESS_KEY_USR}"
           bat 'mvn --version'
+          echo  "my name is ${params.PERSON}"
+          echo  "my name is ${params.BIOGRAPHY}"
+          echo  "my name is ${params.PASSWORD}"
+          echo  "my name is ${params.VERSION}"
+          echo  "my name is ${params.executeTests}"
       }
     }
   }
